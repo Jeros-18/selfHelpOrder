@@ -45,15 +45,19 @@ public class FoodController {
                            @RequestBody FoodQuery foodQuery){
         Integer id = foodQuery.getId();
         String name = foodQuery.getName();
+        String kind = foodQuery.getKind();
 
         QueryWrapper<Food> wrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(id)) {
             wrapper.eq("id",id);
         }
         if (!StringUtils.isEmpty(name)) {
-            wrapper.eq("name",name);
+            wrapper.like("name",name);
         }
-        Page<Food> page = new Page<>();
+        if (!StringUtils.isEmpty(kind)) {
+            wrapper.like("kind",kind);
+        }
+        Page<Food> page = new Page<>(current,limit);
         foodService.page(page,wrapper);
         List<Food> records = page.getRecords();
         long total = page.getTotal();

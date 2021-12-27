@@ -38,6 +38,10 @@ public class Food implements Serializable {
 
     private Float price;
 
+    private String kind;
+
+    private String start;
+
     private Boolean isDeleted;
 
     @TableLogic

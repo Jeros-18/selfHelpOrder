@@ -10,4 +10,6 @@ public class FoodQuery implements Serializable {
     private Integer id;
 
     private String name;
+
+    private String kind;
 }
