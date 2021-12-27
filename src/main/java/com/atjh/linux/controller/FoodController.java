@@ -1,7 +1,6 @@
 package com.atjh.linux.controller;
 
 
-import com.aliyuncs.utils.StringUtils;
 import com.atjh.linux.entity.Food;
 import com.atjh.linux.entity.vo.FoodQuery;
 import com.atjh.linux.service.FoodService;
@@ -11,6 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,10 +47,10 @@ public class FoodController {
         String name = foodQuery.getName();
 
         QueryWrapper<Food> wrapper = new QueryWrapper<>();
-        if (!StringUtils.isEmpty("id")) {
+        if (!StringUtils.isEmpty(id)) {
             wrapper.eq("id",id);
         }
-        if (!StringUtils.isEmpty("name")) {
+        if (!StringUtils.isEmpty(name)) {
             wrapper.eq("name",name);
         }
         Page<Food> page = new Page<>();
