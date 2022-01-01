@@ -71,7 +71,7 @@ public class FoodController {
 
     @ApiOperation(value = "菜品加入订单,is_pick改为1")
     @PutMapping("{id}")
-    public R ding(@PathVariable String id){
+    public R ding(@PathVariable Integer id){
         Food food1 = foodService.getById(id);
         String isPick = food1.getIsPick();
         if(isPick=="1"){
