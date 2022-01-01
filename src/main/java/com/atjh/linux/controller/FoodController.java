@@ -39,45 +39,45 @@ public class FoodController {
 
     @ApiOperation(value = "所有菜品列表")
     @GetMapping
-    public R getAllFood(){
+    public R getAllFood() {
         List<Food> foodList = foodService.list(null);
-        return R.ok().data("foodList",foodList);
+        return R.ok().data("foodList", foodList);
     }
 
     @ApiOperation(value = "带条件分页查询")
     @PostMapping("getFoodPageVo/{current}/{limit}")
     public R getFoodPageVo(@PathVariable Long current,
                            @PathVariable Long limit,
-                           @RequestBody FoodQuery foodQuery){
+                           @RequestBody FoodQuery foodQuery) {
         Integer id = foodQuery.getId();
         String name = foodQuery.getName();
         String kind = foodQuery.getKind();
 
         QueryWrapper<Food> wrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(id)) {
-            wrapper.eq("id",id);
+            wrapper.eq("id", id);
         }
         if (!StringUtils.isEmpty(name)) {
-            wrapper.like("name",name);
+            wrapper.like("name", name);
         }
         if (!StringUtils.isEmpty(kind)) {
-            wrapper.like("kind",kind);
+            wrapper.like("kind", kind);
         }
-        Page<Food> page = new Page<>(current,limit);
-        foodService.page(page,wrapper);
+        Page<Food> page = new Page<>(current, limit);
+        foodService.page(page, wrapper);
         List<Food> records = page.getRecords();
         long total = page.getTotal();
-        return R.ok().data("list",records).data("total",total);
+        return R.ok().data("list", records).data("total", total);
     }
 
     @ApiOperation(value = "菜品加入订单,is_pick改为1")
     @PutMapping("{id}")
-    public R ding(@PathVariable Integer id){
+    public R ding(@PathVariable Integer id) {
         Food food1 = foodService.getById(id);
         String isPick = food1.getIsPick();
-        if(isPick=="1"){
+        if (isPick == "1") {
             return R.error();
-        }else {
+        } else {
             food1.setIsPick("1");
             foodMapper.updateById(food1);
             return R.ok();
@@ -92,33 +92,36 @@ public class FoodController {
 //        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+isPick);
 
 
-
     }
 
     @ApiOperation(value = "222菜品加入订单,num++")
     @PutMapping("addNum/{id}")
-    public R addNum(@PathVariable Integer id){
+    public R addNum(@PathVariable Integer id) {
         Food food = foodService.getById(id);
         Integer num = food.getNum();
 
         food.setNum(++num);
 
         foodMapper.updateById(food);
-        System.out.println("------------------------------"+food);
-            return R.ok();
+        System.out.println("------------------------------" + food);
+        return R.ok();
     }
 
     @ApiOperation(value = "222菜品移出订单,--num")
     @PutMapping("removeNum/{id}")
-    public R removeNum(@PathVariable Integer id){
+    public R removeNum(@PathVariable Integer id) {
         Food food = foodService.getById(id);
         Integer num = food.getNum();
+        if (num == 0) {
+            return R.error2();
+        } else{
+            food.setNum(--num);
 
-        food.setNum(--num);
+            foodMapper.updateById(food);
 
-        foodMapper.updateById(food);
-        System.out.println("------------------------------"+food);
-        return R.ok();
+            return R.ok();
+        }
+
     }
 
 

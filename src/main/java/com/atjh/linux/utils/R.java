@@ -38,6 +38,14 @@ public class R {
         return r;
     }
 
+    public static R error2(){
+        R r = new R();
+        r.setSuccess(false);
+        r.setCode(ResultCode.ERROR);
+        r.setMessage("您还未加入订单，无法移除");
+        return r;
+    }
+
     public R success(Boolean success){
         this.setSuccess(success);
         return this;
