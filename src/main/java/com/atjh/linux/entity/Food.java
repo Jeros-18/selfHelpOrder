@@ -42,10 +42,11 @@ public class Food implements Serializable {
 
     private String start;
 
+    @TableLogic
     private Boolean isDeleted;
 
-    @TableLogic
-    private Boolean isPick;
+
+    private String isPick;
 
 
 }

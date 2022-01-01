@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface FoodMapper extends BaseMapper<Food> {
 
+    void updatePick(String id);
 }

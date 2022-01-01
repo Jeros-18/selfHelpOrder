@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atjh.linux.mapper.FoodMapper">
+    <resultMap id="BaseResultMap" type="com.atjh.linux.entity.Food">
+        <id column="id" property="id"></id>
+        <result column="is_pick" property="isPick"></result>
+<!--        <result column="" property=""></result>-->
+<!--        <result column="" property=""></result>-->
+<!--        <result column="" property=""></result>-->
+<!--        <result column="" property=""></result>-->
 
+    </resultMap>
+
+    <update id="updatePick" parameterType="com.atjh.linux.entity.Food">
+        UPDATE food
+        SET is_pick={!is_pick}
+        WHERE id=#{id}
+    </update>
 </mapper>

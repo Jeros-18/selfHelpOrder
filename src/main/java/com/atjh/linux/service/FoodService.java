@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface FoodService extends IService<Food> {
 
+    void updatePick(String id);
 }
