@@ -122,11 +122,12 @@ public class FoodController {
     }
 
 
-    @ApiOperation(value = "查看订单,查看所有is_pick为1的")
+
+    @ApiOperation(value = "查看订单,查看所有num>0的")
     @GetMapping("getAllPicked")
     public R getAllPicked() {
         QueryWrapper<Food> wrapper=new QueryWrapper<>();
-        wrapper.eq("is_pick",1);
+        wrapper.gt("num",0);
 //
 //        if(food.getIsPick()=="1"){
 //            List<Food> foodPickedList = foodService.list();
