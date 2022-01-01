@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -92,6 +93,19 @@ public class FoodController {
 
 
 
+    }
+
+    @ApiOperation(value = "222菜品加入订单,num++")
+    @PutMapping("addNum/{id}")
+    public R addNum(@PathVariable Integer id){
+        Food food = foodService.getById(id);
+        Integer num = food.getNum();
+
+        food.setNum(++num);
+
+        foodMapper.updateById(food);
+        System.out.println("------------------------------"+food);
+            return R.ok();
     }
 
     @ApiOperation(value = "查看订单,查看所有is_pick为1的")

@@ -48,5 +48,7 @@ public class Food implements Serializable {
 
     private String isPick;
 
+    private Integer num;
+
 
 }
