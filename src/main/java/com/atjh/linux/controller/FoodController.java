@@ -108,6 +108,20 @@ public class FoodController {
             return R.ok();
     }
 
+    @ApiOperation(value = "222菜品移出订单,--num")
+    @PutMapping("removeNum/{id}")
+    public R removeNum(@PathVariable Integer id){
+        Food food = foodService.getById(id);
+        Integer num = food.getNum();
+
+        food.setNum(--num);
+
+        foodMapper.updateById(food);
+        System.out.println("------------------------------"+food);
+        return R.ok();
+    }
+
+
     @ApiOperation(value = "查看订单,查看所有is_pick为1的")
     @GetMapping("getAllPicked")
     public R getAllPicked() {
