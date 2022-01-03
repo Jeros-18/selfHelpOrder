@@ -99,12 +99,16 @@ public class FoodController {
     public R addNum(@PathVariable Integer id) {
         Food food = foodService.getById(id);
         Integer num = food.getNum();
+        System.out.println(food.getMax());
+        if(num>=food.getMax()){
+            return R.error3();
+        }else {
+            food.setNum(++num);
+            foodMapper.updateById(food);
+            return R.ok();
+        }
 
-        food.setNum(++num);
 
-        foodMapper.updateById(food);
-        System.out.println("------------------------------" + food);
-        return R.ok();
     }
 
     @ApiOperation(value = "222菜品移出订单,--num")

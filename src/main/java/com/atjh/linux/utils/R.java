@@ -46,6 +46,14 @@ public class R {
         return r;
     }
 
+    public static R error3(){
+        R r = new R();
+        r.setSuccess(false);
+        r.setCode(ResultCode.ERROR);
+        r.setMessage("购买已达上限，无法再加入订单");
+        return r;
+    }
+
     public R success(Boolean success){
         this.setSuccess(success);
         return this;

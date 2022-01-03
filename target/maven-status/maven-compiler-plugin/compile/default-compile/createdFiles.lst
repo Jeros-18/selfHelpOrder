@@ -1,0 +1,13 @@
+com\atjh\linux\service\FoodService.class
+com\atjh\linux\entity\vo\FoodQuery.class
+com\atjh\linux\api\LoginInController.class
+com\atjh\linux\entity\Food.class
+com\atjh\linux\LinuxApplication.class
+com\atjh\linux\service\impl\FoodServiceImpl.class
+com\atjh\linux\config\MyBatisPlusConfig.class
+com\atjh\linux\mapper\FoodMapper.class
+com\atjh\linux\controller\FoodController.class
+com\atjh\linux\utils\R.class
+com\atjh\linux\config\SwaggerConfig.class
+com\atjh\linux\utils\ConstantPropertiesUtil.class
+com\atjh\linux\utils\ResultCode.class
